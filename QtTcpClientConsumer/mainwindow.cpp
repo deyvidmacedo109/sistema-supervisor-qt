@@ -14,16 +14,35 @@ MainWindow::MainWindow(QWidget *parent) :
           SIGNAL(clicked(bool)),
           this,
           SLOT(getData()));
+  connect(ui->pushButtonConnect,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(tcpConnect()));
+  connect(ui->pushButtonDisconnect,
+          SIGNAL(clicked(bool)),
+          this,
+          SLOT(tcpDisconnect()));
 }
 
 void MainWindow::tcpConnect(){
-  socket->connectToHost("127.0.0.1",1234);
+  socket->connectToHost(ui->textEdit->toPlainText(),1234);
   if(socket->waitForConnected(3000)){
     qDebug() << "Connected";
   }
   else{
     qDebug() << "Disconnected";
   }
+}
+
+void MainWindow::tcpDisconnect(){
+    socket->disconnectFromHost();
+    if(socket->state() == QAbstractSocket::UnconnectedState ||
+        socket->waitForDisconnected(3000)){
+        qDebug() << "Disconnected";
+    }
+    else{
+        qDebug() << "NOT Disconnected";
+    }
 }
 
 void MainWindow::getData(){
@@ -53,6 +72,16 @@ void MainWindow::getData(){
     }
   }
 }
+
+//void MainWindow::CopiaIP(){
+
+//    ui->listWidgetListaIP->addItem(ui->textEdit->toPlainText());
+//}
+
+//void MainWindow::DeleteIP(){
+//
+//    ui->listWidgetListaIP->removeItemWidget(ui->listWidgetListaIP->currentItem());
+//}
 
 
 MainWindow::~MainWindow()

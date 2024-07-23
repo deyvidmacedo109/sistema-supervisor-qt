@@ -17,9 +17,13 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
   
-  void tcpConnect();
+
 public slots:
+  void tcpConnect();
+  void tcpDisconnect();
   void getData();
+  //void CopiaIP();
+  //void DeleteIP();
 private:
   Ui::MainWindow *ui;
   QTcpSocket *socket;

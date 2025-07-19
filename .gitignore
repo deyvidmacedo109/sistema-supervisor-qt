@@ -1,1 +1,25 @@
-*/.user*
+# Ficheiros de compilação e pastas
+build/
+debug/
+release/
+*.o
+*.a
+*.so
+*.dll
+*.app
+*.exe
+
+# Ficheiros de utilizador do Qt Creator
+*.pro.user
+*.pro.user.*
+*.creator.user
+*.creator.user.*
+
+# Ficheiros de backup
+*~
+*.bak
+
+# Ficheiros gerados automaticamente pelo Qt
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
